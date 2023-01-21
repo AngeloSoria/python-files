@@ -455,5 +455,5 @@ def animations(request, clear : bool, speedVertical : int):
     return
 
 
-# Starts here.
+# Starts here!
 start_program()
