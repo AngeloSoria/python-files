@@ -10,12 +10,26 @@ def game_data():
             ["go", ["A woman walking", "An athlete in ready stance before running", "Green light indication for racing", "A person in ready for running stance"]],
             ["me", ["A kid pointing himself", "A woman pointing to herself", "Two friends pointing at themselves", "A person pointing to themselves in the mirror"]],
         ],
+        "word-length-3": [
+            ["tie", ["A well suited man", "A man preparing his wear for neck", "A knot of rope", "A red ribbon"]],
+            ["key", ["A locked doorknob", "A selfie of an elephant", "An unique characteristic of an elf", "Something you can insert"]],
+            ["dot", ["A dice rolling around", "A dress with point design", "Something with URL to complete the address link", "That"]],
+            ["dip", ["A strawberry with chocolate partner", "Touching your dry foot in a pond", "Nachos with guacamole", "Dry brush about to touch the paint"]],
+            ["net", ["World Wide Web", "Global", "A boundary for separate team", "A middle wall"]],
+        ],
         "word-length-4": [
             ["baby", ["A newborn human", "A duckling", "A group of kittens", "A cute newborn kitty"]],
             ["tool", ["A heavy duty pliers", "A hammer smashin a nail", "A mobile drilling machine", "A Screw driver and clamp"]],
             ["gift", ["Kids getting presents", "A box with ribbons", "12am of December 25", "Santa's delivery"]],
             ["toast", ["A fire yellow warning sign", "A bonfire", "A bread whose overcooked", "Red color of human for warning"]],
             ["star", ["A rating system", "A red carpet event", "Constellations", "A VIP"]],
+        ],
+        "word-length-5": [
+            ["mouse", ["A hardware device that allows to move the cursor", "A rat", "A trap with cheese", "Logitech"]],
+            ["horse", ["A rocking toy chair for kids", "A knight in chess", "A cowboys partner", "Unicorn"]],
+            ["italy", ["Pizza", "Eiffell Tower", "Venice Canal", "Leaning tower"]],
+            ["round", ["A globe", "A pregnant woman's tummy", "A basketball", "A shiny marble"]],
+            ["queen", ["An important member of bee hive", "Bohemian Rhapsody", "Important piece of a chess", "Royalty"]],
         ],
         "word-length-6": [
             ["animal", ["A herd of Elepants", "A cute kitten and puppy", "A herd of sheeps looking at you", "A squirrel jumping to each tree"]],
@@ -88,7 +102,7 @@ def start_program():
 
     def showContext(difficulty, stage):
         if difficulty in game_data():
-            print("\n[STAGE " + str(stage) + "]")
+            print("\n[STAGE " + str(stage) + "] (" + difficulty + ")")
             print("Here's your hint:")
             index = 0
             for hint in game_data()[difficulty][stage-1][1]:
@@ -136,6 +150,7 @@ def start_program():
         text_content("show-gt")
         print("[1] Login")
         print("[2] Register")
+        print("[3] Tutorials (Recommended)")
         while True:
             first_prompt = input(">> ")
             if first_prompt == "1":
@@ -148,8 +163,10 @@ def start_program():
                         print("\nYour task is to guess the word by using the 4 given sentence/word given by the game.\n")
                         print("Choose what difficulty:")
                         print("[1] 2-word length")
-                        print("[2] 4-word length")
-                        print("[3] 6-word length")
+                        print("[2] 3-word length")
+                        print("[3] 4-word length")
+                        print("[4] 5-word length")
+                        print("[5] 6-word length")
                         while True:
                             difficulty = input(">> ")
                             if difficulty == "1":
@@ -167,6 +184,19 @@ def start_program():
                                 gameEnded(username)
                             elif difficulty == "2":
                                 # 4 word
+                                answer = showContext('word-length-3', 1)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-3', 2)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-3', 3)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-3', 4)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-3', 5)
+                                checkPlayerAnswer(answer, username)
+                                gameEnded(username)
+                            elif difficulty == "3":
+                                # 6 word
                                 answer = showContext('word-length-4', 1)
                                 checkPlayerAnswer(answer, username)
                                 answer = showContext('word-length-4', 2)
@@ -178,7 +208,20 @@ def start_program():
                                 answer = showContext('word-length-4', 5)
                                 checkPlayerAnswer(answer, username)
                                 gameEnded(username)
-                            elif difficulty == "3":
+                            elif difficulty == "4":
+                                # 6 word
+                                answer = showContext('word-length-5', 1)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-5', 2)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-5', 3)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-5', 4)
+                                checkPlayerAnswer(answer, username)
+                                answer = showContext('word-length-5', 5)
+                                checkPlayerAnswer(answer, username)
+                                gameEnded(username)
+                            elif difficulty == "5":
                                 # 6 word
                                 answer = showContext('word-length-6', 1)
                                 checkPlayerAnswer(answer, username)
@@ -209,6 +252,21 @@ def start_program():
             elif first_prompt == "2":
                 # register
                 registerAccount()
+            elif first_prompt == "3":
+                # tutorials
+                print("\n\n[TUTORIAL]")
+                print("* Your task is to guess the word with the help of hints and the number of letter it requires.")
+                print("* Example:")
+                print("*\tHint-1: Tophat with Bunny")
+                print("*\tHint-2: A fantasy power")
+                print("*\tHint-3: The talent of a well-suited man with white gloves")
+                print("*\tAnswer: magic")
+                while True:
+                    print()
+                    if input("Enter 'y' to exit: "):
+                        startGame()
+                    else:
+                        print("Invalid input, try again.")
             else:
                 print("Invalid input, try again.")
     startGame()
