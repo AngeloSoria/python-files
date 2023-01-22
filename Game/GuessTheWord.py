@@ -1,7 +1,7 @@
 import os
 import random
 
-def game_data():
+def game_data(request):
     answers = {
         "word-length-2": [
             ["hi", ["A kid waving to another", "A man waving towards you", "A kid waving across the door", "A couple waving to someone on the phone"]],
@@ -39,11 +39,11 @@ def game_data():
             ["strike", ["A bowling game getting all pins down", "A kid punching", "A group of workers doing protest", "A fighter jet intercepting"]],
         ],
     }
-    return answers
-
-def start_program():
-    ALL_STAGE_FINISHED = False
+    if request.lower() == "get-answers":
+        return answers
     
+
+def start_program():    
     # Accounts
     accounts = {
         # Test account
@@ -103,14 +103,14 @@ def start_program():
                 print(x)
 
     def showContext(difficulty, stage):
-        if difficulty in game_data():
+        if difficulty in game_data("get-answers"):
             print("\n[STAGE " + str(stage) + "] (" + difficulty + ")")
             print("Here's your hint:")
             index = 0
-            for hint in game_data()[difficulty][stage-1][1]:
+            for hint in game_data("get-answers")[difficulty][stage-1][1]:
                 index+=1
                 print("Hint-"+ str(index) +":", hint)
-            return game_data()[difficulty][stage-1][0] # answer
+            return game_data("get-answers")[difficulty][stage-1][0] # answer
             exit()
         else:
             print("Difficulty ", difficulty, "not found in the game data.")
