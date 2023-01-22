@@ -35,7 +35,9 @@ def start_program():
     # Main brain for the game
     # Requires the parameter of logged-in account
     def adventure(logged_in_account):
-        animations("game-title", True, .05)
+        # animations("game-title", True, .05) # Hidden
+        clearscreen()
+        print("\nAdventure Deluxe! \n")
         # Copy player stats
         thisPlayer = accounts[logged_in_account]
         # Plot
@@ -278,7 +280,9 @@ def start_program():
 
     # Main
     def startGame():
-        animations("game-title", True, .105)
+        # animations("game-title", True, .105) # Hiddden
+        clearscreen()
+        print("\nAdventure Deluxe!\n")
         print("═══════════════════════════════════════════════════════════")
         print("[1] Login")
         print("[2] Register")
