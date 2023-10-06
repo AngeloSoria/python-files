@@ -19,7 +19,7 @@ def start_program():
             "password": "demopassword1234",
             "status": {
                 'hp': 99999,
-                'damage': 99999,
+                'damage': [1, 99999],
                 'gold': 99999,
             },
         }
