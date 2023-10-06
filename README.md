@@ -1,1 +1,2 @@
-# Just some Python programs I made
+# Description
+This Repository is built to experiment the environment of Python programming.
